@@ -1,23 +1,33 @@
-import { Link, Head } from '@inertiajs/react';
-import { PageProps } from '@/types';
-import Layout from '@/Layouts/Layout';
-import HeroSection from '@/Components/HeroSection';
-import FAQ from '@/Components/Faq';
-import faqData from '@/Data/FAQData';
-import PricingPlans from '@/Components/PricingPlans';
-import BenefitsSection from '@/Components/Benefits';
-import FlavoursSection from '@/Components/Flavours';
-import InstagramGallery from '@/Components/instagram';
-import GoogleTag from '@/Components/GoogleTag';
-import ComingSoonPage from '@/Components/ComingSoon';
+import React from 'react';
+import { Card, CardContent, CardHeader } from "@/Components/ui/card";
+const ComingSoonPage = () => {
+  return (
+    <div className="min-h-screen bg-pink-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white shadow-lg">
+        <CardHeader className="pb-2">
+          <div className="w-full flex justify-center">
+            <img
+              src="https://ibb.co/x3VBQ3r"
+              alt="Frosty Flamingo Logo"
+              width={200}
+              height={100}
+            />
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center space-y-4">
+            <p className="text-2xl font-semibold text-gray-700">Coming Soon!</p>
+            <p className="text-lg text-gray-600">
+              We're working hard to bring you the frostiest flavours.
+            </p>
+            <p className="text-md text-pink-500 font-medium">
+              Share the frosty flavour
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
-export default function ComingSoon() {
-    return (
-        <>
-            <Head title="Frosty Flamingo" />
-            <Layout>
-                <ComingSoonPage />
-            </Layout>
-        </>
-    );
-}
+export default ComingSoonPage;
