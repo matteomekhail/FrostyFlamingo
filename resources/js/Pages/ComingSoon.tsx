@@ -7,7 +7,7 @@ const ComingSoonPage = () => {
         <CardHeader className="pb-2">
           <div className="w-full flex justify-center">
             <img
-              src="https://ibb.co/x3VBQ3r"
+              src="https://piada.com.au/wp-content/uploads/2024/10/Frosty-Flamingo.png"
               alt="Frosty Flamingo Logo"
               width={200}
               height={100}
