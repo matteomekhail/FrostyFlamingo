@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from "@/Components/ui/card";
-import frostyFlamingoLogo from '/Users/xell/Desktop/Website/FrostyFlamingo/public/Logos/FrostyFlamingo.png';
+import frostyFlamingoLogo from '../../../public/logos/FrostyFlamingo.png';
 const ComingSoonPage = () => {
   return (
     <div className="min-h-screen bg-pink-100 flex items-center justify-center p-4">
