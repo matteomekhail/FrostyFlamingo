@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <motion.a
-              href="#"
+              href="/"
               className="flex items-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -54,7 +54,6 @@ const Navbar: React.FC = () => {
                 src="/img/FrostyLogo2.png" 
                 alt="Frosty Flamingo" 
                 className="h-14 w-auto"
-                ref="/"
               />
             </motion.a>
 
