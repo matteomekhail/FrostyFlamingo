@@ -13,10 +13,12 @@ interface WelcomeProps extends PageProps {
 }
 
 export default function Welcome({ instagramAccessToken }: WelcomeProps) {
+
     return (
         <>
             <Head title="Frosty Flamingo" />
-            <div className="bg-pink-50">
+            <div className="bg-pink-50 relative">
+                <div className="noise" />
                 <Navbar />
                 <Hero />
                 <Features />

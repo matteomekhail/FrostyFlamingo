@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
@@ -59,34 +59,36 @@ const toppings = [
 
 const Toppings: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [selectedTopping, setSelectedTopping] = useState<Topping>(toppings[0]); // Set first topping as default
+  const [selectedTopping, setSelectedTopping] = useState<Topping>(toppings[0]);
   const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
   const toppingsPerPage: number = 9;
   const totalPages: number = Math.ceil(toppings.length / toppingsPerPage);
+  const isMobileRef = useRef<boolean>(false);
 
-  // Preload all images when component mounts
+  // Preload all images
   useEffect(() => {
-    const preloadImages = async () => {
-      const imagePromises = toppings.map((topping) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = topping.image;
-          img.onload = () => {
-            setPreloadedImages((prev) => new Set([...prev, topping.image]));
-            resolve(topping.image);
-          };
-          img.onerror = reject;
-        });
-      });
-
-      try {
-        await Promise.all(imagePromises);
-      } catch (error) {
-        console.error('Error preloading images:', error);
+    const preloadImage = (src: string) => {
+      if (!preloadedImages.has(src)) {
+        const img = new Image();
+        img.src = src;
+        setPreloadedImages(prev => new Set(prev).add(src));
       }
     };
 
-    preloadImages();
+    toppings.forEach(topping => {
+      preloadImage(topping.image);
+    });
+  }, []);
+
+  // Check if mobile on mount and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      isMobileRef.current = window.innerWidth < 1024;
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const getCurrentToppings = (): Topping[] => {
@@ -98,30 +100,34 @@ const Toppings: React.FC = () => {
     setCurrentPage(newPage);
   };
 
-  const handleToppingSelect = (topping: Topping): void => {
-    setSelectedTopping(topping);
-  };
-
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>): void => {
-    const target = e.target as HTMLImageElement;
-    target.src = '🍨';
-    target.className = 'text-4xl text-center w-full';
+  const handleToppingInteraction = (topping: Topping, isClick: boolean = false): void => {
+    if (isClick && isMobileRef.current) {
+      setSelectedTopping(topping);
+    } else if (!isMobileRef.current && !isClick) {
+      setSelectedTopping(topping);
+    }
   };
 
   return (
-    <section className="py-20" id="toppings">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="toppings" className="py-20 bg-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-pink-300 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-300 rounded-full filter blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-4 relative inline-block">
             OUR TOPPINGS
             <div className="absolute -bottom-2 left-0 w-full h-4 bg-yellow-300 -z-10 transform -rotate-1"></div>
           </h2>
           <p className="text-xl text-gray-600 mt-6">
-            Create what makes you happy with our wide range of signature and seasonal toppings.
+            Create what makes you happy with our wide range of signature and seasonal toppings
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Featured Topping */}
           <div className="lg:col-span-1">
             <AnimatePresence mode="wait">
@@ -130,16 +136,21 @@ const Toppings: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="h-full"
+                className="rounded-2xl p-8 bg-gradient-to-br from-pink-50 to-white shadow-xl"
               >
-                <div className="aspect-square relative mb-8">
-                  <img
+                <div className="aspect-square relative mb-6">
+                  <motion.img
                     src={selectedTopping.image}
                     alt={selectedTopping.name}
-                    className={`w-full h-full object-contain transition-opacity duration-300 ${
-                      preloadedImages.has(selectedTopping.image) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    onError={handleImageError}
+                    className="w-full h-full object-contain"
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '🍨';
+                      target.className = 'text-8xl text-center w-full';
+                    }}
                   />
                 </div>
                 <motion.div
@@ -149,20 +160,14 @@ const Toppings: React.FC = () => {
                 >
                   <h3 className="text-3xl font-bold text-gray-800 mb-4">
                     {selectedTopping.name}
-                    <div className="flex gap-2 mt-2">
-                      {selectedTopping.isVegetarian && (
-                        <span className="text-sm px-2 py-1 rounded-full border border-green-200 text-green-600">
-                          Vegetarian
-                        </span>
-                      )}
-                      {selectedTopping.isGlutenFree && (
-                        <span className="text-sm px-2 py-1 rounded-full border border-blue-200 text-blue-600">
-                          Gluten Free
-                        </span>
-                      )}
-                    </div>
+                    {selectedTopping.isVegetarian && (
+                      <span className="ml-2 text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">V</span>
+                    )}
+                    {selectedTopping.isGlutenFree && (
+                      <span className="ml-2 text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-full">GF</span>
+                    )}
                   </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{selectedTopping.description}</p>
+                  <p className="text-gray-600 text-lg">{selectedTopping.description}</p>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
@@ -170,30 +175,33 @@ const Toppings: React.FC = () => {
 
           {/* Toppings Grid */}
           <div className="lg:col-span-1">
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-4">
               {getCurrentToppings().map((topping) => (
                 <motion.div
                   key={topping.id}
+                  onClick={() => handleToppingInteraction(topping, true)}
+                  onMouseEnter={() => handleToppingInteraction(topping)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`cursor-pointer transition-all duration-300 ${
+                  className={`cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${
                     selectedTopping?.id === topping.id 
-                      ? 'ring-2 ring-pink-400 ring-offset-4 rounded-lg' 
-                      : 'hover:ring-2 hover:ring-pink-200 hover:ring-offset-4 rounded-lg'
+                      ? 'ring-2 ring-pink-400 ring-offset-4' 
+                      : 'hover:ring-2 hover:ring-pink-200 hover:ring-offset-4'
                   }`}
-                  onClick={() => handleToppingSelect(topping)}
                 >
                   <div className="aspect-square relative p-4">
                     <img
                       src={topping.image}
                       alt={topping.name}
-                      className={`w-full h-full object-contain transition-opacity duration-300 ${
-                        preloadedImages.has(topping.image) ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      onError={handleImageError}
+                      className="w-full h-full object-contain"
+                      onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '🍨';
+                        target.className = 'text-4xl text-center w-full';
+                      }}
                     />
                   </div>
-                  <div className="text-center pb-4">
+                  <div className="p-2 text-center bg-gradient-to-b from-transparent to-pink-50">
                     <h3 className="text-sm font-medium text-gray-800">{topping.name}</h3>
                   </div>
                 </motion.div>
@@ -201,25 +209,25 @@ const Toppings: React.FC = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-center mt-12 space-x-6">
+            <div className="flex items-center justify-center mt-8 space-x-4">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
                 disabled={currentPage === 0}
-                className="text-pink-500 disabled:text-gray-300 disabled:cursor-not-allowed"
+                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <FiChevronLeft size={28} />
+                <FiChevronLeft size={24} />
               </motion.button>
-              <div className="flex space-x-3">
+              <div className="flex space-x-2">
                 {[...Array(totalPages)].map((_, index) => (
                   <motion.button
                     key={index}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.8 }}
                     onClick={() => handlePageChange(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                      currentPage === index ? 'bg-pink-500' : 'bg-pink-200'
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      currentPage === index ? 'bg-pink-500' : 'bg-pink-200 hover:bg-pink-300'
                     }`}
                   />
                 ))}
@@ -229,9 +237,9 @@ const Toppings: React.FC = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
                 disabled={currentPage === totalPages - 1}
-                className="text-pink-500 disabled:text-gray-300 disabled:cursor-not-allowed"
+                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <FiChevronRight size={28} />
+                <FiChevronRight size={24} />
               </motion.button>
             </div>
           </div>
