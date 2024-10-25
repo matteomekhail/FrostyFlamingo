@@ -4,7 +4,7 @@ import Navbar from '@/Components/Navbar';
 import Hero from '@/Components/Hero';
 import Menu from '@/Components/Menu';
 import About from '@/Components/About';
-import Footer from '@/Components/ui/Footer';
+import Footer from '@/Components/Footer';
 import Toppings from '@/Components/ToppingSlider';
 import Features from '@/Components/Feautures';
 
