@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiClock, FiMapPin, FiInstagram, FiFacebook } from 'react-icons/fi';
-
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -98,20 +97,16 @@ const Footer: React.FC = () => {
               © {currentYear} Frosty Flamingo. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-pink-200">
-              <motion.a 
-                href="#" 
-                className="hover:text-pink-300 transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                Privacy Policy
-              </motion.a>
-              <motion.a 
-                href="#" 
-                className="hover:text-pink-300 transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                Terms of Service
-              </motion.a>
+              <motion.div whileHover={{ scale: 1.05 }}>
+                <a href="/privacy" className="hover:text-pink-300 transition-colors">
+                  Privacy Policy
+                </a>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }}>
+                <a href="/terms" className="hover:text-pink-300 transition-colors">
+                  Terms of Service
+                </a>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -16,26 +16,10 @@ Route::get('/coming', function () {
     return Inertia::render('ComingSoon');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
 });
 
-Route::post('/create-checkout-session', [CheckoutController::class, 'createCheckoutSession'])->withoutMiddleware(['web']);
-
-Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-Route::get('/purchase/confirmation', function () {
-    return view('purchase.confirmation');
-})->name('purchase.confirmation');
-Route::get('/purchase/error', function () {
-    return view('purchase.error');
-})->name('purchase.error');
-
-Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
-
-require __DIR__ . '/auth.php';
+Route::get('/terms', function () {
+    return Inertia::render('Service');
+});

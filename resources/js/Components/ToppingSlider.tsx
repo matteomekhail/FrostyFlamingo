@@ -61,6 +61,7 @@ const Toppings: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [selectedTopping, setSelectedTopping] = useState<Topping>(toppings[0]);
   const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
+  const [isImageHovered, setIsImageHovered] = useState(false);
   const toppingsPerPage: number = 9;
   const totalPages: number = Math.ceil(toppings.length / toppingsPerPage);
   const isMobileRef = useRef<boolean>(false);
@@ -138,21 +139,27 @@ const Toppings: React.FC = () => {
                 exit={{ opacity: 0, y: -20 }}
                 className="rounded-2xl p-8 bg-gradient-to-br from-pink-50 to-white shadow-xl"
               >
-                <div className="aspect-square relative mb-6">
+                <motion.div 
+                  className="aspect-square relative mb-6 overflow-hidden rounded-xl cursor-zoom-in"
+                  onHoverStart={() => setIsImageHovered(true)}
+                  onHoverEnd={() => setIsImageHovered(false)}
+                >
                   <motion.img
                     src={selectedTopping.image}
                     alt={selectedTopping.name}
                     className="w-full h-full object-contain"
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ scale: 1 }}
+                    animate={{ 
+                      scale: isImageHovered ? 1.2 : 1,
+                      transition: { duration: 0.3 }
+                    }}
                     onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       const target = e.target as HTMLImageElement;
                       target.src = '🍨';
                       target.className = 'text-8xl text-center w-full';
                     }}
                   />
-                </div>
+                </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -173,7 +180,7 @@ const Toppings: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Toppings Grid */}
+          {/* Rest of the component remains the same */}
           <div className="lg:col-span-1">
             <div className="grid grid-cols-3 gap-4">
               {getCurrentToppings().map((topping) => (
