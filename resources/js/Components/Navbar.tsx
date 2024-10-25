@@ -54,6 +54,7 @@ const Navbar: React.FC = () => {
                 src="/img/FrostyLogo2.png" 
                 alt="Frosty Flamingo" 
                 className="h-14 w-auto"
+                ref="/"
               />
             </motion.a>
 
