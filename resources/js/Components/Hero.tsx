@@ -153,7 +153,7 @@ const Hero: React.FC = () => {
                                     className="relative aspect-square"
                                 >
                                     <img
-                                        src="/img/Hero.jpg"
+                                        src="https://piada.com.au/wp-content/uploads/2024/10/Hero-scaled.jpg"
                                         alt="Frozen Yogurt"
                                         className="w-full h-full object-cover rounded-full shadow-2xl"
                                     />

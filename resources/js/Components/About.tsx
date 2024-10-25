@@ -28,7 +28,7 @@ function About() {
             <div className="absolute inset-0 bg-pink-200 rounded-lg transform rotate-3"></div>
             <div className="absolute inset-0 bg-purple-200 rounded-lg transform -rotate-3"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <img src="/img/about.jpg" alt="About Frosty Flamingo" className="object-cover w-full h-full rounded-lg" />
+              <img src="https://piada.com.au/wp-content/uploads/2024/10/about-scaled.jpg" alt="About Frosty Flamingo" className="object-cover w-full h-full rounded-lg" />
             </div>
           </motion.div>
         </div>
