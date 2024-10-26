@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Hero: React.FC = () => {
     return (
         <div> {/* Increased padding-top to prevent navbar overlap */}
-            <div className="relative min-h-[calc(100vh-5rem)] bg-gradient-to-br from-pink-100 via-white to-pink-50 overflow-hidden flex items-center">
+            <div className="relative min-h-[calc(100vh-5rem)] bg-gradient-to-br from-pink-100 via-white to-pink-50 overflow-hidden flex items-center pt-4">
                 {/* Rest of the Hero component remains the same */}
                 {Array.from({ length: 20 }).map((_, i) => (
                     <div
