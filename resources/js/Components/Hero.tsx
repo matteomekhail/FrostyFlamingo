@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
     return (
-        <div className="pt-16">
-            <div className="relative min-h-screen bg-gradient-to-br from-pink-100 via-white to-pink-50 overflow-hidden flex items-center">
+        <div> {/* Increased padding-top to prevent navbar overlap */}
+            <div className="relative min-h-[calc(100vh-5rem)] bg-gradient-to-br from-pink-100 via-white to-pink-50 overflow-hidden flex items-center">
+                {/* Rest of the Hero component remains the same */}
                 {Array.from({ length: 20 }).map((_, i) => (
                     <div
                         key={i}
-                        className="sparkles"
+                        className="sparkles absolute pointer-events-none"
                         style={{
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
@@ -28,6 +29,7 @@ const Hero: React.FC = () => {
                         </svg>
                     </div>
                 ))}
+
                 {/* Decorative Elements */}
                 <motion.div
                     className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-yellow-200/30 blur-3xl"
@@ -153,7 +155,7 @@ const Hero: React.FC = () => {
                                     className="relative aspect-square"
                                 >
                                     <img
-                                        src="https://piada.com.au/wp-content/uploads/2024/10/Hero-scaled.jpg"
+                                        src="/img/Hero.jpg"
                                         alt="Frozen Yogurt"
                                         className="w-full h-full object-cover rounded-full shadow-2xl"
                                     />
