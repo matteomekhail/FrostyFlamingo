@@ -14,6 +14,7 @@ export default function Navbar() {
               src="/img/FrostyLogo2.png" 
               alt="Frosty Flamingo" 
               className="h-12 w-auto"
+              ref="/"
             />  
           </div>
 
