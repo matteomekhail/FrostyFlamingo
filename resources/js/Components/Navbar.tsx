@@ -19,9 +19,9 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">Flavours</a>
-            <a href="#" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">Toppings</a>
-            <a href="#" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">About Us</a>
+            <a href="#menu" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">Flavours</a>
+            <a href="#toppings" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">Toppings</a>
+            <a href="#about" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">About Us</a>
           </div>
 
           {/* Mobile menu button */}
