@@ -10,12 +10,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Brand logo */}
           <div className="flex-shrink-0">
-            <img 
-              src="/img/FrostyLogo2.png" 
-              alt="Frosty Flamingo" 
-              className="h-12 w-auto"
-              ref="/"
-            />  
+            <a href="/">
+              <img 
+                src="/img/FrostyLogo2.png" 
+                alt="Frosty Flamingo" 
+                className="h-12 w-auto cursor-pointer"
+              />
+            </a>
           </div>
 
           {/* Desktop menu */}
