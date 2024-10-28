@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
         <div>
             <div className="relative min-h-[calc(100vh-5rem)] bg-gradient-to-br from-pink-100 via-white to-pink-50 overflow-hidden flex flex-col justify-between pt-4">
                 {/* Main Content */}
-                <div className="flex-1 flex items-center">
+                <div className="flex-1 flex items-center z-50">
                     {/* Sparkles */}
                     {Array.from({ length: 20 }).map((_, i) => (
                         <div
@@ -77,16 +77,16 @@ const Hero: React.FC = () => {
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="space-y-8"
+                                className="space-y-8 z-50"
                             >
                                 <div className="space-y-4">
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.2 }}
-                                        className="inline-block"
+                                        className="inline-block z-50"
                                     >
-                                        <span className="text-lg font-medium text-pink-500 bg-pink-50 px-4 py-2 rounded-full">
+                                        <span className="text-lg font-medium text-pink-500 bg-pink-50 px-4 py-2 rounded-full z-50">
                                             Now Open in Oran Park Podium 🌴
                                         </span>
                                     </motion.div>
@@ -95,17 +95,17 @@ const Hero: React.FC = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 }}
-                                        className="text-6xl md:text-7xl font-bold text-gray-800"
+                                        className="text-6xl md:text-7xl font-bold text-gray-800 z-50"
                                     >
                                         Happiness
-                                        <span className="block text-pink-500">in Every Swirl</span>
+                                        <span className="block text-pink-500 z-50">in Every Swirl</span>
                                     </motion.h1>
 
                                     <motion.p
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.4 }}
-                                        className="text-xl text-gray-600 max-w-lg"
+                                        className="text-xl text-gray-600 max-w-lg z-50"
                                     >
                                         Indulge in our artisanal frozen yogurt and açaí, crafted with premium ingredients and topped with your favorite treats.
                                     </motion.p>

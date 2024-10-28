@@ -52,11 +52,11 @@ const Menu: React.FC = () => {
     <section id="menu" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4 relative inline-block">
+          <h2 className="text-5xl font-bold mb-4 relative inline-block z-50">
             OUR FLAVORS
             <div className="absolute -bottom-2 left-0 w-full h-4 bg-yellow-300 -z-10 transform -rotate-1"></div>
           </h2>
-          <p className="text-xl text-gray-600 mt-6">
+          <p className="text-xl text-gray-600 mt-6 z-50">
             Discover our signature flavors, crafted with care and natural ingredients
           </p>
         </div>
@@ -69,29 +69,29 @@ const Menu: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative"
+              className="group relative z-50"
             >
-              <div className="relative aspect-square overflow-hidden rounded-2xl">
+              <div className="relative aspect-square overflow-hidden rounded-2xl z-50">
                 <img
                   src={flavor.image}
                   alt={flavor.name}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 z-50"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-50" />
               </div>
               
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">{flavor.name}</h3>
-                    <p className="text-sm text-gray-200 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-50">
+                <div className="flex justify-between items-end z-50">
+                  <div className="z-50">
+                    <h3 className="text-2xl font-bold mb-2 z-50">{flavor.name}</h3>
+                    <p className="text-sm text-gray-200 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
                       {flavor.description}
                     </p>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 z-50">
                       {flavor.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-1 rounded-full bg-white/20 backdrop-blur-sm"
+                          className="text-xs px-2 py-1 rounded-full bg-white/20 backdrop-blur-sm z-50"
                         >
                           {tag}
                         </span>
@@ -102,7 +102,7 @@ const Menu: React.FC = () => {
               </div>
 
               <motion.div
-                className="absolute inset-0 rounded-2xl ring-4 ring-pink-400 ring-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 rounded-2xl ring-4 ring-pink-400 ring-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               />
@@ -115,16 +115,16 @@ const Menu: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-16 text-center z-50"
         >
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 mb-8 z-50">
             All our flavors can be customized with your favorite toppings!
           </p>
           <motion.a
             href="#toppings"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-pink-600 transition-colors"
+            className="inline-block bg-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-pink-600 transition-colors z-50"
           >
             Explore Toppings
           </motion.a>

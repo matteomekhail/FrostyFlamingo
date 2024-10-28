@@ -5,22 +5,22 @@ import { FiFeather, FiHeart, FiStar, FiRefreshCcw } from 'react-icons/fi';
 const Features: React.FC = () => {
   const features = [
     {
-      icon: <FiFeather className="w-8 h-8" />,
+      icon: <FiFeather className="w-8 h-8 z-50" />,
       title: "All Natural",
       description: "Made with organic ingredients and natural sweeteners"
     },
     {
-      icon: <FiHeart className="w-8 h-8" />,
+      icon: <FiHeart className="w-8 h-8 z-50" />,
       title: "Health Conscious",
       description: "Low-fat, probiotic-rich options for a balanced lifestyle"
     },
     {
-      icon: <FiStar className="w-8 h-8" />,
+      icon: <FiStar className="w-8 h-8 z-50" />,
       title: "Premium Quality",
       description: "Carefully sourced ingredients for the best taste"
     },
     {
-      icon: <FiRefreshCcw className="w-8 h-8" />,
+      icon: <FiRefreshCcw className="w-8 h-8 z-50" />,
       title: "Fresh Daily",
       description: "Made fresh every day for the perfect consistency"
     }
@@ -37,13 +37,13 @@ const Features: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-6"
+              className="text-center p-6 z-50"
             >
-              <div className="inline-block p-4 bg-pink-100 rounded-full text-pink-500 mb-4">
+              <div className="inline-block p-4 bg-pink-100 rounded-full text-pink-500 mb-4 z-50">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="text-xl font-semibold mb-2 z-50">{feature.title}</h3>
+              <p className="text-gray-600 z-50">{feature.description}</p>
             </motion.div>
           ))}
         </div>

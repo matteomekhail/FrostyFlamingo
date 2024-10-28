@@ -128,31 +128,31 @@ const Toppings: React.FC = () => {
         <section id="toppings" className="py-20 bg-white relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-pink-300 rounded-full filter blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-300 rounded-full filter blur-3xl" />
+                <div className="absolute top-0 left-0 w-64 h-64 bg-pink-300 rounded-full filter blur-3xl -z-10" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-300 rounded-full filter blur-3xl -z-10" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-50">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold mb-4 relative inline-block">
+                    <h2 className="text-5xl font-bold mb-4 relative inline-block z-50">
                         OUR TOPPINGS
                         <div className="absolute -bottom-2 left-0 w-full h-4 bg-yellow-300 -z-10 transform -rotate-1"></div>
                     </h2>
-                    <p className="text-xl text-gray-600 mt-6">
+                    <p className="text-xl text-gray-600 mt-6 z-50">
                         Create what makes you happy with our wide range of signature and seasonal toppings
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 z-50">
                     {/* Featured Topping */}
-                    <div className="lg:col-span-1">
+                    <div className="lg:col-span-1 z-50">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={selectedTopping.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                className="rounded-2xl p-8 bg-gradient-to-br from-pink-50 to-white shadow-xl"
+                                className="rounded-2xl p-8 shadow-xl z-50"
                             >
                                 <motion.div
                                     className="aspect-square relative mb-6 overflow-hidden rounded-xl cursor-zoom-in"
@@ -162,7 +162,7 @@ const Toppings: React.FC = () => {
                                     <motion.img
                                         src={selectedTopping.image}
                                         alt={selectedTopping.name}
-                                        className="w-full h-full object-contain"
+                                        className="w-full h-full object-contain z-50"
                                         initial={{ scale: 1 }}
                                         animate={{
                                             scale: isImageHovered ? 1.2 : 1,
@@ -179,25 +179,26 @@ const Toppings: React.FC = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.2 }}
+                                    className="z-50"
                                 >
-                                    <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                                    <h3 className="text-3xl font-bold text-gray-800 mb-4 z-50">
                                         {selectedTopping.name}
                                         {selectedTopping.isVegetarian && (
-                                            <span className="ml-2 text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">V</span>
+                                            <span className="ml-2 text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full z-50">V</span>
                                         )}
                                         {selectedTopping.isGlutenFree && (
-                                            <span className="ml-2 text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-full">GF</span>
+                                            <span className="ml-2 text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-full z-50">GF</span>
                                         )}
                                     </h3>
-                                    <p className="text-gray-600 text-lg">{selectedTopping.description}</p>
+                                    <p className="text-gray-600 text-lg z-50">{selectedTopping.description}</p>
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
                     </div>
 
                     {/* Rest of the component remains the same */}
-                    <div className="lg:col-span-1">
-                        <div className="grid grid-cols-3 gap-4">
+                    <div className="lg:col-span-1 z-50">
+                        <div className="grid grid-cols-3 gap-4 z-50">
                             {getCurrentToppings().map((topping) => (
                                 <motion.div
                                     key={topping.id}
@@ -205,7 +206,7 @@ const Toppings: React.FC = () => {
                                     onMouseEnter={() => handleToppingInteraction(topping)}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${selectedTopping?.id === topping.id
+                                    className={`cursor-pointer rounded-xl overflow-hidden transition-all duration-300 z-50 ${selectedTopping?.id === topping.id
                                             ? 'ring-2 ring-pink-400 ring-offset-4'
                                             : 'hover:ring-2 hover:ring-pink-200 hover:ring-offset-4'
                                         }`}
@@ -214,7 +215,7 @@ const Toppings: React.FC = () => {
                                         <img
                                             src={topping.image}
                                             alt={topping.name}
-                                            className="w-full h-full object-contain"
+                                            className="w-full h-full object-contain z-50"
                                             onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                                                 const target = e.target as HTMLImageElement;
                                                 target.src = '🍨';
@@ -222,32 +223,32 @@ const Toppings: React.FC = () => {
                                             }}
                                         />
                                     </div>
-                                    <div className="p-2 text-center bg-gradient-to-b from-transparent to-pink-50">
-                                        <h3 className="text-sm font-medium text-gray-800">{topping.name}</h3>
+                                    <div className="p-2 text-center bg-gradient-to-b from-transparent to-pink-50 z-50">
+                                        <h3 className="text-sm font-medium text-gray-800 z-50">{topping.name}</h3>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
 
                         {/* Pagination */}
-                        <div className="flex items-center justify-center mt-8 space-x-4">
+                        <div className="flex items-center justify-center mt-8 space-x-4 z-50">
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
                                 disabled={currentPage === 0}
-                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50"
                             >
-                                <FiChevronLeft size={24} />
+                                <FiChevronLeft size={24} className="z-50" />
                             </motion.button>
-                            <div className="flex space-x-2">
+                            <div className="flex space-x-2 z-50">
                                 {[...Array(totalPages)].map((_, index) => (
                                     <motion.button
                                         key={index}
                                         whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.8 }}
                                         onClick={() => handlePageChange(index)}
-                                        className={`w-3 h-3 rounded-full transition-colors ${currentPage === index ? 'bg-pink-500' : 'bg-pink-200 hover:bg-pink-300'
+                                        className={`w-3 h-3 rounded-full transition-colors z-50 ${currentPage === index ? 'bg-pink-500' : 'bg-pink-200 hover:bg-pink-300'
                                             }`}
                                     />
                                 ))}
@@ -257,9 +258,9 @@ const Toppings: React.FC = () => {
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
                                 disabled={currentPage === totalPages - 1}
-                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50"
                             >
-                                <FiChevronRight size={24} />
+                                <FiChevronRight size={24} className="z-50" />
                             </motion.button>
                         </div>
                     </div>

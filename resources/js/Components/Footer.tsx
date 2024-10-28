@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-pink-900 via-pink-800 to-purple-900 text-white overflow-hidden">
+    <footer className="relative z-50 bg-gradient-to-br from-pink-900 via-pink-800 to-purple-900 text-white overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-96 h-96 bg-pink-400 rounded-full filter blur-3xl" />
