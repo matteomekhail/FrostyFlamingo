@@ -69,7 +69,7 @@ const Menu: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative z-50"
+              className="group relative z-50 focus:outline-none"
             >
               <div className="relative aspect-square overflow-hidden rounded-2xl z-50">
                 <img
@@ -102,7 +102,7 @@ const Menu: React.FC = () => {
               </div>
 
               <motion.div
-                className="absolute inset-0 rounded-2xl ring-4 ring-pink-400 ring-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50"
+                className="absolute inset-0 rounded-2xl ring-4 ring-pink-400 ring-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 focus:outline-none"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               />
