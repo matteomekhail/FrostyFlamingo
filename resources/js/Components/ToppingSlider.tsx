@@ -206,10 +206,11 @@ const Toppings: React.FC = () => {
                                     onMouseEnter={() => handleToppingInteraction(topping)}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`cursor-pointer rounded-xl overflow-hidden transition-all duration-300 z-50 ${selectedTopping?.id === topping.id
+                                    className={`cursor-pointer rounded-xl overflow-hidden transition-all duration-300 z-50 focus:outline-none ${
+                                        selectedTopping?.id === topping.id
                                             ? 'ring-2 ring-pink-400 ring-offset-4'
                                             : 'hover:ring-2 hover:ring-pink-200 hover:ring-offset-4'
-                                        }`}
+                                    }`}
                                 >
                                     <div className="aspect-square relative p-4">
                                         <img
@@ -237,7 +238,7 @@ const Toppings: React.FC = () => {
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
                                 disabled={currentPage === 0}
-                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50"
+                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50 focus:outline-none"
                             >
                                 <FiChevronLeft size={24} className="z-50" />
                             </motion.button>
@@ -248,8 +249,9 @@ const Toppings: React.FC = () => {
                                         whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.8 }}
                                         onClick={() => handlePageChange(index)}
-                                        className={`w-3 h-3 rounded-full transition-colors z-50 ${currentPage === index ? 'bg-pink-500' : 'bg-pink-200 hover:bg-pink-300'
-                                            }`}
+                                        className={`w-3 h-3 rounded-full transition-colors z-50 focus:outline-none ${
+                                            currentPage === index ? 'bg-pink-500' : 'bg-pink-200 hover:bg-pink-300'
+                                        }`}
                                     />
                                 ))}
                             </div>
@@ -258,7 +260,7 @@ const Toppings: React.FC = () => {
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
                                 disabled={currentPage === totalPages - 1}
-                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50"
+                                className="p-2 rounded-full bg-pink-100 text-pink-600 disabled:opacity-50 disabled:cursor-not-allowed z-50 focus:outline-none"
                             >
                                 <FiChevronRight size={24} className="z-50" />
                             </motion.button>
