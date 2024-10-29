@@ -27,16 +27,16 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden z-50 relative">
+          <div className="md:hidden z-[52] relative ">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-pink-500 transition-colors"
+              className="text-gray-700 hover:text-pink-500 transition-colors z-[51] outline-none"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <X className="h-6 w-6 transform transition-transform duration-300 rotate-0" />
+                <X className="h-6 w-6 transform transition-transform duration-300 rotate-0 z-[52]" />
               ) : (
-                <Menu className="h-6 w-6 transform transition-transform duration-300 rotate-0" />
+                <Menu className="h-6 w-6 transform transition-transform duration-300 rotate-0 z-[52]" />
               )}
             </button>
           </div>
@@ -45,7 +45,7 @@ export default function Navbar() {
 
       {/* Fullscreen Mobile menu with smooth transition */}
       <div 
-        className={`fixed inset-0 bg-pink-50 z-40 md:hidden transition-all duration-300 ease-in-out transform ${
+        className={`fixed inset-0 z-[51] bg-pink-50 md:hidden transition-all duration-300 ease-in-out transform ${
           isOpen 
             ? 'opacity-100 translate-x-0' 
             : 'opacity-0 translate-x-full pointer-events-none'
