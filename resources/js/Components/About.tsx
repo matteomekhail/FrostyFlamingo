@@ -30,7 +30,7 @@ function About() {
             <div className="absolute inset-0 bg-purple-200 rounded-lg transform -rotate-3 z-40"></div>
             <div className="absolute inset-0 flex items-center justify-center z-50">
               <img 
-                src="https://piada.com.au/wp-content/uploads/2024/10/about-scaled.jpg" 
+                src="/img/about.jpg" 
                 alt="About Frosty Flamingo" 
                 className="object-cover w-full h-full rounded-lg z-50" 
               />
